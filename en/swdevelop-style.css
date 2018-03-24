@@ -73,12 +73,12 @@ body{
 	color:#000;
 	display: none;
 }
-input{
+input[type="text"],input[type="button"]{
 	background:#4c4c4c;
 	color:#fefefe;
 	border:#fefefe 1px solid;
 }
-input:hover,input:focus{
+input[type="text"]:hover,input[type="text"]:focus,input[type="button"]:hover,input[type="button"]:focus{
 	background:#2c2c2c;
 	border:#1064ed 1px solid;
 }
