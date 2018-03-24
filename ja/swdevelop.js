@@ -22,7 +22,7 @@ function menu(num){
 	}else{
 	//メニュー設定
 	if(num==0){
-		sub.innerHTML='<input type="text" id="filename" style="width:95%;background:#4c4c4c;color:#fefefe;" placeholder="ファイル名..." autocomplete="off"><br><a href="javascript:void(0);" onclick="fileDown();" class="submenulink">ダウンロード</a><a href="javascript:void(0);" onclick="fileOpen();" class="submenulink">ファイルを開く</a>';
+		sub.innerHTML='<a href="javascript:void(0);" onclick="newFile();" class="submenulink">新規作成</a><input type="text" id="filename" style="width:95%;background:#4c4c4c;color:#fefefe;" placeholder="ファイル名..." autocomplete="off"><br><a href="javascript:void(0);" onclick="fileDown();" class="submenulink">ダウンロード</a><a href="javascript:void(0);" onclick="fileOpen();" class="submenulink">ファイルを開く</a><a href="javascript:void(0);" onclick="saveLocal();" class="submenulink">ブラウザ(LocalStorage)に保存</a><a href="javascript:void(0);" onclick="loadLocal();" class="submenulink">ブラウザ(LocalStorage)から読み込み</a>';
 	}
 	else if(num==1){
 		sub.innerHTML='<a href="javascript:void(0);" onclick="viewMode(0);cMenu();" class="submenulink">デュアルビュー</a><a href="javascript:void(0);" onclick="viewMode(1);cMenu();" class="submenulink">ソース表示</a>';
@@ -102,6 +102,23 @@ fo.addEventListener("change",function(evt){
 	so.modal.close();
   }
 },false);
+}
+function saveLocal(){
+	localStorage.savedata = so.getVal("code");
+	cMenu();
+	alert("LocalStorageに上書き保存しました");
+}
+function loadLocal(){
+	so.setVal("code",localStorage.savedata);
+	cMenu();
+}
+function newFile(){
+	cMenu();
+	if(confirm("新しいファイルを作成すると、現在の編集データが消えますがよろしいですか？")){
+		so.setVal("code","");
+		document.title="New - Soruto Web Develop";
+		view();
+	}
 }
 function cMenu(){
 	document.getElementById("submenu").style.display = "none";
