@@ -2,7 +2,11 @@
 	view();
 }
 function view(){
-	document.getElementById("view").contentWindow.document.body.innerHTML = document.getElementById("code").value;
+	var code = document.getElementById("code");
+	document.getElementById("view").contentWindow.document.body.innerHTML = code.value;
+	var byn = encodeURI(code.value).replace(/%[0-9A-F]{2}/g, '*').length;
+	var krb = byn / 1000;
+	document.getElementById("states").textContent = "> 文字数:" + so.getVal("code").length + "字 サイズ:" + byn + "Byte (" + krb + "KB)";
 }
 function viewMode(num){
 	if(num==0){
