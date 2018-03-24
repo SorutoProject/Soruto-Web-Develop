@@ -1,5 +1,28 @@
-﻿<!DOCTYPE HTML><html><head><title>Soruto Web Develop</title><meta charset="utf-8"></head>
-<body><style>
-body{background:#2c2c2c;color:#fefefe;font-family: 'メイリオ', Meiryo,'Meiryo UI','ヒラギノ角ゴシック','Hiragino Sans',sans-serif;text-align:center;}a{color:#fefefe;font-weight:bold;}
-</style>
-<p><h3>Soruto Web Develop</h3><p>Welcome to Soruto Web Develop.<br>Soruto Web Developへようこそ。</p><p>Please select your language.<br>言語を選んでください。</p><p><a href="en/">English(英語)</a><br><a href="ja/">Japanese(日本語)</a></p><p>(C)2018 Soruto Project.</p></body></html>
+<!DOCTYPE HTML><html><head><title>Soruto Web Develop</title><meta charset="utf-8"><script>
+var browserLanguage = function() {
+  var ua = window.navigator.userAgent.toLowerCase();
+  try {
+    // chrome
+    if( ua.indexOf( 'chrome' ) != -1 ){
+      return ( navigator.languages[0] || navigator.browserLanguage || navigator.language || navigator.userLanguage).substr(0,2);
+    }
+    // それ以外
+    else{
+      return ( navigator.browserLanguage || navigator.language || navigator.userLanguage).substr(0,2);
+    }
+  }
+  catch( e ) {
+    return undefined;
+  }
+}
+window.onload = function(){
+// 日本語
+if( browserLanguage() == 'ja' ){
+  location.replace('/ja');
+}
+// その他
+else{
+  location.replace('/en');
+}
+}
+</script></head></html>
