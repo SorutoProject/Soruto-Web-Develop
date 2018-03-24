@@ -22,7 +22,7 @@ function menu(num){
 	}else{
 	//メニュー設定
 	if(num==0){
-		sub.innerHTML='<input type="text" id="filename" style="width:95%;background:#4c4c4c;color:#fefefe;" placeholder="File Name..." autocomplete="off"><br><a href="javascript:void(0);" onclick="fileDown();" class="submenulink">Download</a><a href="javascript:void(0);" onclick="fileOpen();" class="submenulink">Open</a>';
+		sub.innerHTML='<a href="javascript:void(0);" onclick="newFile();" class="submenulink">New</a><input type="text" id="filename" style="width:95%;background:#4c4c4c;color:#fefefe;" placeholder="File Name..." autocomplete="off"><br><a href="javascript:void(0);" onclick="fileDown();" class="submenulink">Download</a><a href="javascript:void(0);" onclick="fileOpen();" class="submenulink">Open</a><a href="javascript:void(0);" onclick="saveLocal();" class="submenulink">Save to this Browser(LocalStorage)</a><a href="javascript:void(0);" onclick="loadLocal();" class="submenulink">Load from this Browser(LocalStorage)</a>';
 	}
 	else if(num==1){
 		sub.innerHTML='<a href="javascript:void(0);" onclick="viewMode(0);cMenu();" class="submenulink">Dual View</a><a href="javascript:void(0);" onclick="viewMode(1);cMenu();" class="submenulink">Source View</a>';
@@ -30,6 +30,7 @@ function menu(num){
 sub.style.display="block";
 }
 }
+// ダウンロードしたいコンテンツ、MIMEType、ファイル名
 function fileDown(){
 var content  = document.getElementById("code").value;
 var mimeType = 'text/html';
@@ -101,6 +102,23 @@ fo.addEventListener("change",function(evt){
 	so.modal.close();
   }
 },false);
+}
+function saveLocal(){
+	localStorage.savedata = so.getVal("code");
+	cMenu();
+	alert("Saved to LocalStorage.");
+}
+function loadLocal(){
+	so.setVal("code",localStorage.savedata);
+	cMenu();
+}
+function newFile(){
+	cMenu();
+	if(confirm("Are you sure you want to make new file?")){
+		so.setVal("code","");
+		document.title="New - Soruto Web Develop";
+		view();
+	}
 }
 function cMenu(){
 	document.getElementById("submenu").style.display = "none";
