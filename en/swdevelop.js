@@ -139,7 +139,7 @@ fo.addEventListener("change",function(evt){
 function saveLocal(){
 	localStorage.savedata = so.getVal("code");
 	cMenu();
-	alert("Saved to LocalStorage.");
+	so.modal.al("Complete","Saved to LocalStorage.");
 }
 function loadLocal(){
 	so.setVal("code",localStorage.savedata);
