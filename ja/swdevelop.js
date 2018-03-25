@@ -47,7 +47,7 @@ function menu(num){
 		sub.innerHTML='<a href="javascript:void(0)" onclick="newtab(0)" class="submenulink">新しいタブを開く</a><a href="javascript:void(0)" onclick="newtab(1)" class="submenulink">新しいタブでファイルを開く</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(メニューを閉じる)</a>';
 	}
 	else if(num==2){
-		sub.innerHTML='<a href="javascript:void(0);" onclick="viewMode(0);cMenu();" class="submenulink">デュアルビュー</a><a href="javascript:void(0);" onclick="viewMode(1);cMenu();" class="submenulink">ソース表示</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(メニューを閉じる)</a>';
+		sub.innerHTML='<a href="javascript:void(0);" onclick="viewMode(0);cMenu();" class="submenulink">デュアルビュー</a><a href="javascript:void(0);" onclick="viewMode(1);cMenu();" class="submenulink">ソース表示</a><a href="javascript:void(0)" onclick="pageview(\'reload\');" class="submenulink">ページビューを更新</a><a href="javascript:void(0)" onclick="pageview(\'reset\');" class="submenulink">ページビューをリセット(エラーが出たとき)</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(メニューを閉じる)</a>';
 	}
 sub.style.display="block";
 }
@@ -158,4 +158,12 @@ function newtab(num){
 		window.open(openurl[0] + "?f=new","_blank");
 	}
 cMenu();
+}
+function pageview(func){
+	if(func == "reset"){
+	document.getElementById("view").contentWindow.location.replace("about:blank");
+	}else if(func == "reload"){
+	view();	
+	cMenu();
+	}
 }

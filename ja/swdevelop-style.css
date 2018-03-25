@@ -37,21 +37,12 @@ body{
 	background:#6c6c6c;
 	text-decoration: none;
 	font-size:10pt;
-	border-bottom:#a5a5a5 1px solid;
+	border-bottom:#a5a5a5 3px solid;
 }
 .menulink:hover{
 	color:#4c4c4c;
 	background:#fefefe;
-}
-.closelink{
-	color:#fefefe;
-	background:#fe0000;
-	text-decoration: none;
-	font-size:10pt;
-}
-.closelink:hover{
-	color:#4c4c4c;
-	background:#fefefe;
+	border-bottom:#3563ad 3px solid;
 }
 .submenulink{
 	color:#fefefe;
