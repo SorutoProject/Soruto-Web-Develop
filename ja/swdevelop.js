@@ -1,6 +1,9 @@
 ﻿window.onload = function(){
 	view();
 }
+window.onbeforeunload = function(e) {
+      return 'このページから出ると、編集内容が失われますが、続行しますか?';
+    };
 function view(){
 	var code = document.getElementById("code");
 	document.getElementById("view").contentWindow.document.body.innerHTML = code.value;
