@@ -49,6 +49,9 @@ function menu(num){
 	else if(num==2){
 		sub.innerHTML='<a href="javascript:void(0);" onclick="viewMode(0);cMenu();" class="submenulink">Dual View</a><a href="javascript:void(0);" onclick="viewMode(1);cMenu();" class="submenulink">Source View</a><a href="javascript:void(0)" onclick="pageview(\'reload\');" class="submenulink">Update the page view</a><a href="javascript:void(0)" onclick="pageview(\'reset\');" class="submenulink">Reset the page view(When showed error)</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(Close this menu)</a>';
 	}
+	else if(num==3){
+		sub.innerHTML='<a href="javascript:void(0);" onclick="template(\'html\')" class="submenulink">Plain HTML</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(Close this menu)</a>';
+	}
 sub.style.display="block";
 }
 // ダウンロードしたいコンテンツ、MIMEType、ファイル名
@@ -166,4 +169,19 @@ function pageview(func){
 	view();	
 	cMenu();
 	}
+}
+function edit(){
+	var code = document.getElementById("code");
+    code.value = document.getElementById("view").contentWindow.document.body.innerHTML;
+	var byn = encodeURI(code.value).replace(/%[0-9A-F]{2}/g, '*').length;
+	var krb = byn / 1000;
+	document.getElementById("states").textContent = "> 文字数:" + so.getVal("code").length + "字 サイズ:" + byn + "Byte (" + krb + "KB)";
+}
+function template(st){
+	if(st=="html"){
+	var code = document.getElementById("code");
+	code.value='<!DOCTYPE HTML><html><head><title>Template</title><meta charset="utf-8"></head><body><p>sample</p></body></html>';
+	}
+view();
+cMenu();
 }
