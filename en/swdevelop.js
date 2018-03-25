@@ -43,7 +43,7 @@ var content  = document.getElementById("code").value;
 var mimeType = 'text/html';
 var name     = document.getElementById("filename").value;
 if(name==""){
-	alert("Please enter the File Name.");
+	so.modal.al("info","Please enter the File Name.");
 	document.getElementById("filename").focus();
 }else{
 // BOMは文字化け対策
