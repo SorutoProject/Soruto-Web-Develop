@@ -93,3 +93,6 @@ input[type="text"]:hover,input[type="text"]:focus,input[type="button"]:hover,inp
 	font-family: 'メイリオ', Meiryo,'Meiryo UI','ヒラギノ角ゴシック','Hiragino Sans',sans-serif;
 	font-size:10pt;
 }
+#so-modal{
+	z-index:2;
+}
