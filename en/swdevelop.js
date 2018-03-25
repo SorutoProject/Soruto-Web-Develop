@@ -1,4 +1,14 @@
 ﻿window.onload = function(){
+	var arg = new Object;
+	var pair=location.search.substring(1).split('&');
+	for(var i=0;pair[i];i++) {
+    var kv = pair[i].split('=');
+    arg[kv[0]]=kv[1];
+}
+	var param = arg.f;
+	if(param == "new"){
+		fileOpen();
+	}
 	view();
 }
 window.onbeforeunload = function(e) {
@@ -24,18 +34,22 @@ function viewMode(num){
 }
 function menu(num){
 	var sub = document.getElementById("submenu");
-	if(sub.style.display == "block"){
-		cMenu();
-	}else{
 	//メニュー設定
 	if(num==0){
-		sub.innerHTML='<a href="javascript:void(0);" onclick="newFile();" class="submenulink">New</a><input type="text" id="filename" style="width:95%;background:#4c4c4c;color:#fefefe;" placeholder="File Name..." autocomplete="off"><br><a href="javascript:void(0);" onclick="fileDown();" class="submenulink">Download</a><a href="javascript:void(0);" onclick="fileOpen();" class="submenulink">Open</a><a href="javascript:void(0);" onclick="saveLocal();" class="submenulink">Save to this Browser(LocalStorage)</a><a href="javascript:void(0);" onclick="loadLocal();" class="submenulink">Load from this Browser(LocalStorage)</a>';
+		sub.innerHTML='<a href="javascript:void(0);" onclick="newFile();" class="submenulink">New</a><input type="text" id="filename" style="width:295px;background:#4c4c4c;color:#fefefe;" placeholder="File Name..." autocomplete="off"><br><a href="javascript:void(0);" onclick="fileDown();" class="submenulink">Download</a><a href="javascript:void(0);" onclick="fileOpen();" class="submenulink">Open</a><a href="javascript:void(0);" onclick="saveLocal();" class="submenulink">Save to this Browser(LocalStorage)</a><a href="javascript:void(0);" onclick="loadLocal();" class="submenulink">Load from this Browser(LocalStorage)</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(Close this menu)</a>';
+		var filename = sessionStorage.filename;
+		if(filename===undefined){}
+		else{
+			so.setVal("filename",filename);
+		}
 	}
 	else if(num==1){
-		sub.innerHTML='<a href="javascript:void(0);" onclick="viewMode(0);cMenu();" class="submenulink">Dual View</a><a href="javascript:void(0);" onclick="viewMode(1);cMenu();" class="submenulink">Source View</a>';
+		sub.innerHTML='<a href="javascript:void(0)" onclick="newtab(0)" class="submenulink">Open new tab</a><a href="javascript:void(0)" onclick="newtab(1)" class="submenulink">Open a file in new tab</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(Close this menu)</a>';
+	}
+	else if(num==2){
+		sub.innerHTML='<a href="javascript:void(0);" onclick="viewMode(0);cMenu();" class="submenulink">Dual View</a><a href="javascript:void(0);" onclick="viewMode(1);cMenu();" class="submenulink">Source View</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(Close this menu)</a>';
 	}
 sub.style.display="block";
-}
 }
 // ダウンロードしたいコンテンツ、MIMEType、ファイル名
 function fileDown(){
@@ -96,6 +110,7 @@ fo.addEventListener("change",function(evt){
     //テキストエリアに表示する
     so.getId("code").value = reader.result;
 	document.title = file[0].name + " - Soruto Web Develop";
+	sessionStorage.filename =file[0].name;
 	var accept = file[0].name.split(".");
 	if(accept[1] == "html" || accept[1] == "htm"){
 		so.getId("code").style.width = "49.5%";
@@ -130,4 +145,17 @@ function newFile(){
 }
 function cMenu(){
 	document.getElementById("submenu").style.display = "none";
+}
+function savefilename(){
+	sessionStorage.filename = so.getVal("filename");
+}
+function newtab(num){
+	if(num==0){
+		var openurl = location.href.split("?");
+		window.open(openurl[0],"_blank");
+	}else if(num==1){
+		var openurl = location.href.split("?");
+		window.open(openurl[0] + "?f=new","_blank");
+	}
+cMenu();	
 }
