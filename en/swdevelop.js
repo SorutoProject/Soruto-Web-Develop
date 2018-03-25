@@ -10,9 +10,10 @@
 		fileOpen();
 	}
 	view();
+	document.getElementById("submenu").style.display = "none";
 }
 window.onbeforeunload = function(e) {
-      return 'If you leave this page now,you lost the data. Are you sure to leave this page?';
+      return 'If you leave this page now,you lost the data. Are you sure you wamt to leave this page?';
     };
 function view(){
 	var code = document.getElementById("code");
@@ -52,7 +53,14 @@ function menu(num){
 	else if(num==3){
 		sub.innerHTML='<a href="javascript:void(0);" onclick="template(\'html\')" class="submenulink">Plain HTML</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(Close this menu)</a>';
 	}
-sub.style.display="block";
+}
+function sMenu(){
+	var sub = document.getElementById("submenu");
+	if(sub.style.display == "none"){
+	sub.style.display = "block";
+	}else{
+		sub.style.display = "none";
+	}
 }
 // ダウンロードしたいコンテンツ、MIMEType、ファイル名
 function fileDown(){
