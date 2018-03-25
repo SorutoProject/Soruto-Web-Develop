@@ -32,6 +32,16 @@ body{
 	border:#fefefe 1px solid;
 	background:#fff;
 }
+#visual{
+	position:absolute;
+	top:30px;
+	right:0px;
+	width:49.5%;
+	height:600px;
+	border:#fefefe 1px solid;
+	background:#fff;
+	display:none;
+}
 .menulink{
 	color:#fefefe;
 	background:#4c4c4c;
@@ -98,4 +108,9 @@ input[type="text"]:hover,input[type="text"]:focus,input[type="button"]:hover,inp
 }
 #so-modal{
 	z-index:2;
+}
+#change{
+	position:absolute;
+	top:30px;
+	right:20px;
 }
