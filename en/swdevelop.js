@@ -118,6 +118,7 @@ function saveLocal(){
 function loadLocal(){
 	so.setVal("code",localStorage.savedata);
 	cMenu();
+	view();
 }
 function newFile(){
 	cMenu();
