@@ -15,6 +15,7 @@
 iframe.contentDocument.body.contentEditable = true;
 iframe.contentDocument.designMode = 'on';
 */
+document.getElementById("submenu").style.display = "none";
 }
 window.onbeforeunload = function(e) {
       return 'このページから出ると、編集内容が失われますが、続行しますか?';
@@ -57,7 +58,14 @@ function menu(num){
 	else if(num==3){
 		sub.innerHTML='<a href="javascript:void(0);" onclick="template(\'html\')" class="submenulink">標準HTML</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(メニューを閉じる)</a>';
 	}
-sub.style.display="block";
+}
+function sMenu(){
+	var sub = document.getElementById("submenu");
+	if(sub.style.display == "none"){
+	sub.style.display = "block";
+	}else{
+		sub.style.display = "none";
+	}
 }
 // ダウンロードしたいコンテンツ、MIMEType、ファイル名
 function fileDown(){
