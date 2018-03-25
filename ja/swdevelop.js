@@ -144,7 +144,7 @@ fo.addEventListener("change",function(evt){
 function saveLocal(){
 	localStorage.savedata = so.getVal("code");
 	cMenu();
-	alert("LocalStorageに上書き保存しました");
+	so.modal.al("完了ｆ","LocalStorageに上書き保存しました");
 }
 function loadLocal(){
 	so.setVal("code",localStorage.savedata);
