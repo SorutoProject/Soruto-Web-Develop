@@ -1,6 +1,9 @@
 ﻿window.onload = function(){
 	view();
 }
+window.onbeforeunload = function(e) {
+      return 'If you leave this page now,you lost the data. Are you sure to leave this page?';
+    };
 function view(){
 	var code = document.getElementById("code");
 	document.getElementById("view").contentWindow.document.body.innerHTML = code.value;
