@@ -34,14 +34,14 @@ body{
 }
 .menulink{
 	color:#fefefe;
-	background:#6c6c6c;
+	background:#4c4c4c;
 	text-decoration: none;
 	font-size:10pt;
 	border-bottom:#a5a5a5 3px solid;
 }
 .menulink:hover{
-	color:#4c4c4c;
-	background:#fefefe;
+	color:#fefefe;
+	background:#010101;
 	border-bottom:#3563ad 3px solid;
 }
 .submenulink{
