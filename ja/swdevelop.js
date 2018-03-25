@@ -61,10 +61,10 @@ function menu(num){
 }
 function sMenu(){
 	var sub = document.getElementById("submenu");
-	if(sub.style.display == "none"){
-	sub.style.display = "block";
+	if(sub.style.display == "block"){
+	sub.style.display = "none";
 	}else{
-		sub.style.display = "none";
+		sub.style.display = "block";
 	}
 }
 // ダウンロードしたいコンテンツ、MIMEType、ファイル名
