@@ -65,7 +65,7 @@ function sMenu(){
 // ダウンロードしたいコンテンツ、MIMEType、ファイル名
 function fileDown(){
 var content  = document.getElementById("code").value;
-var mimeType = 'text/html';
+var mimeType = 'text/plain';
 var name     = document.getElementById("filename").value;
 if(name==""){
 	so.modal.al("info","Please enter the File Name.");
