@@ -27,7 +27,7 @@ window.onbeforeunload = function(e) {
 function view(){
 	var code = document.getElementById("code");
 	document.getElementById("view").contentWindow.document.body.innerHTML = code.value;
-	var byn = encodeURI(code.value).replace(/%[0-9A-F]{2}/g, '*').length;
+	var byn = encodeURI(code.value).replace(/%[0-9A-F]{2}/g, '*').length + 3;
 	var krb = byn / 1000;
 	document.getElementById("states").textContent = "> 文字数:" + so.getVal("code").length + "字 サイズ:" + byn + "Byte (" + krb + "KB)";
 }
@@ -200,7 +200,7 @@ function pageview(func){
 function edit(){
 	var code = document.getElementById("code");
     code.value = document.getElementById("view").contentWindow.document.body.innerHTML;
-	var byn = encodeURI(code.value).replace(/%[0-9A-F]{2}/g, '*').length;
+	var byn = encodeURI(code.value).replace(/%[0-9A-F]{2}/g, '*').length + 3;
 	var krb = byn / 1000;
 	document.getElementById("states").textContent = "> 文字数:" + so.getVal("code").length + "字 サイズ:" + byn + "Byte (" + krb + "KB)";
 }
