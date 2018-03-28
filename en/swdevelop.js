@@ -10,7 +10,11 @@
 		fileOpen();
 	}
 	view();
+	Screen();
 	document.getElementById("submenu").style.display = "none";
+}
+window.onresize = function () {
+    Screen();
 }
 window.onbeforeunload = function(e) {
       return 'If you leave this page now,you lost the data. Are you sure you wamt to leave this page?';
@@ -203,3 +207,8 @@ function template(st){
 view();
 cMenu();
 }
+function Screen(){
+	var size = document.documentElement.clientHeight - 60;
+	so.getId("view").style.height= size + "px";
+	so.getId("code").style.height= size + "px";
+	}
