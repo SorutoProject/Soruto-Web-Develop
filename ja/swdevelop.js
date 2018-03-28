@@ -32,10 +32,17 @@ function viewMode(num){
 		so.getId("code").style.width = "49.5%";
 		so.getId("view").style.width = "49.5%";
 		so.display("view");
+		so.display("code");
 		view();
 	}else if(num==1){
 		so.getId("code").style.width = "99.5%";
 		so.displayNone("view");
+		so.display("code");
+	}
+	else if(num==2){
+		so.getId("view").style.width = "100%";
+		so.display("view");
+		so.displayNone("code");
 	}
 }
 function menu(num){
@@ -53,7 +60,7 @@ function menu(num){
 		sub.innerHTML='<a href="javascript:void(0)" onclick="newtab(0)" class="submenulink">新しいタブを開く</a><a href="javascript:void(0)" onclick="newtab(1)" class="submenulink">新しいタブでファイルを開く</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(メニューを閉じる)</a>';
 	}
 	else if(num==2){
-		sub.innerHTML='<a href="javascript:void(0);" onclick="viewMode(0);cMenu();" class="submenulink">デュアルビュー</a><a href="javascript:void(0);" onclick="viewMode(1);cMenu();" class="submenulink">ソース表示</a><a href="javascript:void(0)" onclick="pageview(\'reload\');" class="submenulink">ページビューを更新</a><a href="javascript:void(0)" onclick="pageview(\'reset\');" class="submenulink">ページビューをリセット(エラーが出たとき)</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(メニューを閉じる)</a>';
+		sub.innerHTML='<a href="javascript:void(0);" onclick="viewMode(0);cMenu();" class="submenulink">デュアルビューモード</a><a href="javascript:void(0);" onclick="viewMode(1);cMenu();" class="submenulink">ソース表示モード</a><a href="javascript:void(0);" onclick="viewMode(2);cMenu();" class="submenulink" style="border-bottom:#fefefe 2px solid;">ページ表示モード</a><a href="javascript:void(0)" onclick="pageview(\'reload\');" class="submenulink">ページ表示を更新</a><a href="javascript:void(0)" onclick="pageview(\'reset\');" class="submenulink">ページ表示をリセット(エラーが出たとき)</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(メニューを閉じる)</a>';
 	}
 	else if(num==3){
 		sub.innerHTML='<a href="javascript:void(0);" onclick="template(\'html\')" class="submenulink">標準HTML</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(メニューを閉じる)</a>';
@@ -116,6 +123,7 @@ var fo = document.getElementById("selfile");
 fo.addEventListener("change",function(evt){
 	so.modal.close();
 	so.modal.custom("<br><br><br><center>読み込み中...</center>");
+	so.getId("so-modal").style.cursor="wait";
   var file = evt.target.files;
   //FileReaderの作成
   var reader = new FileReader();
@@ -132,12 +140,14 @@ fo.addEventListener("change",function(evt){
 		so.getId("code").style.width = "49.5%";
 		so.getId("view").style.width = "49.5%";
 		so.display("view");
+		so.display("code");
 		view();
 	}else{
 		so.getId("code").style.width = "99.5%";
 		so.displayNone("view");
 	}
 	so.modal.close();
+	so.getId("so-modal").style.cursor="default";
   }
 },false);
 }
