@@ -121,7 +121,7 @@ cMenu();
 }
 function fileOpen(){
 cMenu();
-var diaso = '<b>ファイルを開く</b><br><input type="file" id="selfile" accept=".html,.htm,.js,.css"><br><br><input type="button" onclick="so.modal.close();" value="キャンセル">';
+var diaso = '<b>ファイルを選択してください</b><br><span style="font-size:8pt;">※UTF-8でエンコードされていないと、文字化けすることがあります。</span><br><input type="file" id="selfile" accept=".html,.htm,.js,.css"><br><br><input type="button" onclick="so.modal.close();" value="キャンセル">';
 so.modal.custom(diaso);
 var fo = document.getElementById("selfile");
 fo.addEventListener("change",function(evt){
