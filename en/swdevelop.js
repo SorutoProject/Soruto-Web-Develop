@@ -73,7 +73,6 @@ function sMenu(){
 		sub.style.display = "block";
 	}
 }
-// ダウンロードしたいコンテンツ、MIMEType、ファイル名
 function fileDown(){
 var content  = document.getElementById("code").value;
 var mimeType = 'text/plain';
@@ -82,7 +81,6 @@ if(name==""){
 	so.modal.al("info","Please enter the File Name.");
 	document.getElementById("filename").focus();
 }else{
-// BOMは文字化け対策
 var bom  = new Uint8Array([0xEF, 0xBB, 0xBF]);
 var blob = new Blob([bom, content], {type : mimeType});
 
@@ -116,7 +114,7 @@ cMenu();
 }
 function fileOpen(){
 cMenu();
-var diaso = '<b>Open</b><br><input type="file" id="selfile" accept=".html,.htm,.js,.css"><br><br><input type="button" onclick="so.modal.close();" value="Cancel">';
+var diaso = '<b>Select your file</b><br><input type="file" id="selfile" accept=".html,.htm,.js,.css"><br><br><input type="button" onclick="so.modal.close();" value="Cancel">';
 so.modal.custom(diaso);
 var fo = document.getElementById("selfile");
 fo.addEventListener("change",function(evt){
