@@ -22,10 +22,11 @@ body{
 	background:#2c2c2c;
 	font-family: 'メイリオ', Meiryo,'Meiryo UI','ヒラギノ角ゴシック','Hiragino Sans',sans-serif;
 	font-size:10pt;
+	resize:none;
 }
 #view{
 	position:absolute;
-	top:30px;
+	top:31px;
 	right:0px;
 	width:49.5%;
 	height:600px;
