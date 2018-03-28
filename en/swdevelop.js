@@ -20,22 +20,29 @@ function view(){
 	document.getElementById("view").contentWindow.document.body.innerHTML = code.value;
 	var byn = encodeURI(code.value).replace(/%[0-9A-F]{2}/g, '*').length;
 	var krb = byn / 1000;
-	document.getElementById("states").textContent = "> length:" + so.getVal("code").length + " size:" + byn + "Byte (" + krb + "KB)";
+	document.getElementById("states").textContent = "> Length:" + so.getVal("code").length + " Size:" + byn + "B (" + krb + "KB)";
 }
 function viewMode(num){
 	if(num==0){
 		so.getId("code").style.width = "49.5%";
 		so.getId("view").style.width = "49.5%";
 		so.display("view");
+		so.display("code");
 		view();
 	}else if(num==1){
 		so.getId("code").style.width = "99.5%";
 		so.displayNone("view");
+		so.display("code");
+	}
+	else if(num==2){
+		so.getId("view").style.width = "100%";
+		so.display("view");
+		so.displayNone("code");
 	}
 }
 function menu(num){
 	var sub = document.getElementById("submenu");
-	//メニュー設定
+	//Menu Set
 	if(num==0){
 		sub.innerHTML='<a href="javascript:void(0);" onclick="newFile();" class="submenulink">New</a><input type="text" id="filename" style="width:295px;background:#4c4c4c;color:#fefefe;" placeholder="File Name..." autocomplete="off"><br><a href="javascript:void(0);" onclick="fileDown();" class="submenulink">Download</a><a href="javascript:void(0);" onclick="fileOpen();" class="submenulink">Open</a><a href="javascript:void(0);" onclick="saveLocal();" class="submenulink">Save to this Browser(LocalStorage)</a><a href="javascript:void(0);" onclick="loadLocal();" class="submenulink">Load from this Browser(LocalStorage)</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(Close this menu)</a>';
 		var filename = sessionStorage.filename;
@@ -48,10 +55,10 @@ function menu(num){
 		sub.innerHTML='<a href="javascript:void(0)" onclick="newtab(0)" class="submenulink">Open new tab</a><a href="javascript:void(0)" onclick="newtab(1)" class="submenulink">Open a file in new tab</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(Close this menu)</a>';
 	}
 	else if(num==2){
-		sub.innerHTML='<a href="javascript:void(0);" onclick="viewMode(0);cMenu();" class="submenulink">Dual View</a><a href="javascript:void(0);" onclick="viewMode(1);cMenu();" class="submenulink">Source View</a><a href="javascript:void(0)" onclick="pageview(\'reload\');" class="submenulink">Update the page view</a><a href="javascript:void(0)" onclick="pageview(\'reset\');" class="submenulink">Reset the page view(When showing error)</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(Close this menu)</a>';
+		sub.innerHTML='<a href="javascript:void(0);" onclick="viewMode(0);cMenu();" class="submenulink">Dual View Mode</a><a href="javascript:void(0);" onclick="viewMode(1);cMenu();" class="submenulink">Source View Mode</a><a href="javascript:void(0);" onclick="viewMode(2);cMenu();" class="submenulink" style="border-bottom:#fefefe 2px solid;">Page View Mode</a><a href="javascript:void(0)" onclick="pageview(\'reload\');" class="submenulink">Update the page view</a><a href="javascript:void(0)" onclick="pageview(\'reset\');" class="submenulink">Reset the page view(When showing error)</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(Close this menu)</a>';
 	}
 	else if(num==3){
-		sub.innerHTML='<a href="javascript:void(0);" onclick="template(\'html\')" class="submenulink">Plain HTML</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(Close this menu)</a>';
+		sub.innerHTML='<a href="javascript:void(0);" onclick="template(\'html\')" class="submenulink">Normal HTML</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(Close this menu)</a>';
 	}
 }
 function sMenu(){
@@ -111,14 +118,15 @@ var fo = document.getElementById("selfile");
 fo.addEventListener("change",function(evt){
 	so.modal.close();
 	so.modal.custom("<br><br><br><center>Loading...</center>");
+	so.getId("so-modal").style.cursor="wait";
   var file = evt.target.files;
-  //FileReaderの作成
+  //Make FileReader
   var reader = new FileReader();
-  //テキスト形式で読み込む
+  //read As text
   reader.readAsText(file[0]);
-  //読込終了後の処理
+  //onload
   reader.onload = function(ev){
-    //テキストエリアに表示する
+    //show on the editor
     so.getId("code").value = reader.result;
 	document.title = file[0].name + " - Soruto Web Develop";
 	sessionStorage.filename =file[0].name;
@@ -127,12 +135,14 @@ fo.addEventListener("change",function(evt){
 		so.getId("code").style.width = "49.5%";
 		so.getId("view").style.width = "49.5%";
 		so.display("view");
+		so.display("code");
 		view();
 	}else{
 		so.getId("code").style.width = "99.5%";
 		so.displayNone("view");
 	}
 	so.modal.close();
+	so.getId("so-modal").style.cursor="default";
   }
 },false);
 }
@@ -183,7 +193,7 @@ function edit(){
     code.value = document.getElementById("view").contentWindow.document.body.innerHTML;
 	var byn = encodeURI(code.value).replace(/%[0-9A-F]{2}/g, '*').length;
 	var krb = byn / 1000;
-	document.getElementById("states").textContent = "> 文字数:" + so.getVal("code").length + "字 サイズ:" + byn + "Byte (" + krb + "KB)";
+	document.getElementById("states").textContent = "> Length:" + so.getVal("code").length + " Size:" + byn + "Byte (" + krb + "KB)";
 }
 function template(st){
 	if(st=="html"){
