@@ -132,19 +132,9 @@ fo.addEventListener("change",function(evt){
     so.getId("code").value = reader.result;
 	document.title = file[0].name + " - Soruto Web Develop";
 	sessionStorage.filename =file[0].name;
-	var accept = file[0].name.split(".");
-	if(accept[1] == "html" || accept[1] == "htm"){
-		so.getId("code").style.width = "49.5%";
-		so.getId("view").style.width = "49.5%";
-		so.display("view");
-		so.display("code");
-		view();
-	}else{
-		so.getId("code").style.width = "99.5%";
-		so.displayNone("view");
-	}
 	so.modal.close();
 	so.getId("so-modal").style.cursor="default";
+	view();
   }
 },false);
 }
