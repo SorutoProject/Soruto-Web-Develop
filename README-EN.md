@@ -1,9 +1,9 @@
 # Soruto-Web-Develop(EN)
-日本語版は、[こちらから](README.md)ご覧ください
+※日本語版は、[こちらから](README.md)ご覧ください
 
 Index  
 * Welcome!
-* 機能
+* Features
 
 ## Welcome!
 <img src="Web-Develop-pop.png" width="480px" height="240px"></img>  
