@@ -65,7 +65,7 @@ function menu(num){
 		sub.innerHTML='<a href="javascript:void(0);" onclick="template(\'html\')" class="submenulink">Normal HTML</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(Close this menu)</a>';
 	}
 	else if(num==4){
-		sub.innerHTML='<a href="javascript:void(0)" onclick="so.modal.al(\'About\',\'<b>Soruto Web Develop</b><br><span style=font-size:10pt>Web develop on any browsers.<br>(c)2018 Soruto Project</span>\');cMenu();" class="submenulink">About this site</a><a href="https://github.com/SorutoProject/Soruto-Web-Develop/" target="_blank" class="submenulink">GitHub</a>'
+		sub.innerHTML='<a href="javascript:void(0)" onclick="so.modal.al(\'About\',\'<b>Soruto Web Develop</b><br><span style=font-size:10pt>Web develop on any browsers.<br>(c)2018 Soruto Project</span>\');cMenu();" class="submenulink">About this site</a><a href="https://github.com/SorutoProject/Soruto-Web-Develop/" target="_blank" class="submenulink">GitHub</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(Close this menu)</a>'
 	}
 }
 function sMenu(){
