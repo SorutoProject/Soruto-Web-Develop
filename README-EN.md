@@ -15,7 +15,7 @@ You can edit html,JavaScript,CSS and other files on your browser.
 
 * Basic Functions(New/Open a file/Save)
 * Use LocalStorage
-* Show the length and file size
+* Show the length and the file size
 * Dual view mode
 * Source view mode
 * Page view mode
