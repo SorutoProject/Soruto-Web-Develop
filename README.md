@@ -3,8 +3,8 @@ Do you want to see the English version?
 [Click here](README-EN.md)
 
 目次  
-* Soruto Web Developへようこそ
-* 機能
+* [Soruto Web Developへようこそ](soruto-web-developへようこそ)
+* [機能](#機能)
 
 ## Soruto Web Developへようこそ
 <img src="Web-Develop-pop.png" width="480px" height="240px"></img>  
