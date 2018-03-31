@@ -19,11 +19,11 @@ var browserLanguage = function() {
 window.onload = function(){
 // 日本語
 if( browserLanguage() == 'ja' ){
-  window.setTimeout("location.replace('/ja')",2000);
+location.replace('/ja');
 }
 // その他
 else{
-  window.setTimeout("location.replace('/en')",1000);
+  location.replace('/en');
 }
 }
 }
