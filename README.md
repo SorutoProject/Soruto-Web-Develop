@@ -1,6 +1,6 @@
 # Soruto-Web-Develop(JP)
 Do you want to see the English version?  
-[Click here](readme-en.md)
+[Click here](README-EN.md)
 
 目次  
 * Soruto Web Developへようこそ
