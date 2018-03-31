@@ -1,5 +1,4 @@
 <!DOCTYPE HTML><html><head><title>Soruto Web Develop</title><meta charset="utf-8"><script>
-window.onload = function(){
 var browserLanguage = function() {
   var ua = window.navigator.userAgent.toLowerCase();
   try {
@@ -19,21 +18,11 @@ var browserLanguage = function() {
 window.onload = function(){
 // 日本語
 if( browserLanguage() == 'ja' ){
-location.replace('/ja');
+  location.replace('/ja');
 }
 // その他
 else{
   location.replace('/en');
 }
 }
-}
-</script></head>
-  <body>
-    <style>body{background:#2c2c2c;}</style>
-<table width="100%" height="100%">
-<tr>
-<td align="center"><img src="Web-Develop-pop.png"></td>
-</tr>
-</table>
-  </body>
-</html>
+</script></head></html>
