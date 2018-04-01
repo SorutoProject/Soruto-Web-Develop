@@ -29,6 +29,7 @@ body{
 	height:600px;
 	border:#fefefe 1px solid;
 	background:#fff;
+	z-index: 2
 }
 #visual{
 	position:absolute;
