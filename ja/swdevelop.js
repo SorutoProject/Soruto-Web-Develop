@@ -82,7 +82,7 @@ function menu(num){
 		sub.innerHTML='<a href="javascript:void(0);" onclick="template(\'html\')" class="submenulink">標準HTML</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(メニューを閉じる)</a>';
 	}
 	else if(num==4){
-		sub.innerHTML='<a href="javascript:void(0);" onclick="so.modal.al(\'About\',\'<b>Soruto Web Develop</b><br><span style=font-size:10pt>Webブラウザで使えるオンラインIDE<br>(c)2018 Soruto Project</span>\');cMenu();" class="submenulink">このサイトについて</a><a href="https://github.com/SorutoProject/Soruto-Web-Develop/" target="_blank" class="submenulink">GitHub</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(メニューを閉じる)</a>';
+		sub.innerHTML='<a href="javascript:void(0);" onclick="so.modal.al(\'About\',\'<b>Soruto Web Develop</b><br><span style=font-size:10pt>Webブラウザで使えるオンラインIDE<br>Made with ACE Editor.<br>(c)2018 Soruto Project</span>\');cMenu();" class="submenulink">このサイトについて</a><a href="https://github.com/SorutoProject/Soruto-Web-Develop/" target="_blank" class="submenulink">GitHub</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(メニューを閉じる)</a>';
 	}
 	else if(num==5){
 		sub.innerHTML='<a href="javascript:void(0);" onclick="changeLang(\'css\')" class="submenulink">CSS</a><a href="javascript:void(0);" onclick="changeLang(\'html\')" class="submenulink">HTML</a><a href="javascript:void(0);" onclick="changeLang(\'js\')" class="submenulink">JavaScript</a>'
