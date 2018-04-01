@@ -1,4 +1,15 @@
-﻿window.onload = function(){
+﻿/*Soruto Web Develop Ver.2.0
+Made with ACE Editor.
+*/
+
+window.onload = function(){
+	var editor = ace.edit("code");
+	editor.setTheme("ace/theme/monokai");
+    editor.setFontSize(14);
+    editor.getSession().setMode("ace/mode/html");
+    editor.getSession().setUseWrapMode(true);
+    editor.getSession().setTabSize(2);
+	
 	var arg = new Object;
 	var pair=location.search.substring(1).split('&');
 	for(var i=0;pair[i];i++) {
@@ -11,6 +22,7 @@
 	}
 	view();
 	Screen();
+	
 /*var iframe = document.querySelector('iframe');
 
 iframe.contentDocument.body.contentEditable = true;
@@ -25,21 +37,21 @@ window.onbeforeunload = function(e) {
       return 'このページから出ると、編集内容が失われますが、続行しますか?';
     };
 function view(){
-	var code = document.getElementById("code");
-	document.getElementById("view").contentWindow.document.body.innerHTML = code.value;
-	var byn = encodeURI(code.value).replace(/%[0-9A-F]{2}/g, '*').length + 3;
+	var code = ace.edit("code");
+	document.getElementById("view").contentWindow.document.body.innerHTML = code.session.getValue();
+	var byn = encodeURI(code.session.getValue()).replace(/%[0-9A-F]{2}/g, '*').length + 3;
 	var krb = byn / 1000;
-	document.getElementById("states").textContent = "> 文字数:" + so.getVal("code").length + "字 サイズ:" + byn + "Byte (" + krb + "KB)";
+	document.getElementById("states").textContent = "> 文字数:" + code.session.getValue().length + "字 サイズ:" + byn + "Byte (" + krb + "KB)";
 }
 function viewMode(num){
 	if(num==0){
-		so.getId("code").style.width = "49.5%";
-		so.getId("view").style.width = "49.5%";
+		so.getId("code").style.width = "50%";
+		so.getId("view").style.width = "50%";
 		so.display("view");
 		so.display("code");
 		view();
 	}else if(num==1){
-		so.getId("code").style.width = "99.5%";
+		so.getId("code").style.width = "100%";
 		so.displayNone("view");
 		so.display("code");
 	}
@@ -72,6 +84,9 @@ function menu(num){
 	else if(num==4){
 		sub.innerHTML='<a href="javascript:void(0);" onclick="so.modal.al(\'About\',\'<b>Soruto Web Develop</b><br><span style=font-size:10pt>Webブラウザで使えるオンラインIDE<br>(c)2018 Soruto Project</span>\');cMenu();" class="submenulink">このサイトについて</a><a href="https://github.com/SorutoProject/Soruto-Web-Develop/" target="_blank" class="submenulink">GitHub</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(メニューを閉じる)</a>';
 	}
+	else if(num==5){
+		sub.innerHTML='<a href="javascript:void(0);" onclick="changeLang(\'css\')" class="submenulink">CSS</a><a href="javascript:void(0);" onclick="changeLang(\'html\')" class="submenulink">HTML</a><a href="javascript:void(0);" onclick="changeLang(\'js\')" class="submenulink">JavaScript</a>'
+	}
 }
 function sMenu(){
 	var sub = document.getElementById("submenu");
@@ -83,12 +98,12 @@ function sMenu(){
 }
 // ダウンロードしたいコンテンツ、MIMEType、ファイル名
 function fileDown(){
-var content  = document.getElementById("code").value;
+var code = ace.edit("code");
+var content  = code.session.getValue();
 var mimeType = 'text/plain';
 var name     = document.getElementById("filename").value;
 if(name==""){
 	so.modal.al("情報","ファイル名を入力してください");
-	document.getElementById("filename").focus();
 }else{
 // BOMは文字化け対策
 var bom  = new Uint8Array([0xEF, 0xBB, 0xBF]);
@@ -139,7 +154,8 @@ fo.addEventListener("change",function(evt){
   //読込終了後の処理
   reader.onload = function(ev){
     //テキストエリアに表示する
-    so.getId("code").value = reader.result;
+	var code = ace.edit("code");
+    code.setValue(reader.result, 1);
 	document.title = file[0].name + " - Soruto Web Develop";
 	sessionStorage.filename =file[0].name;
 	so.modal.close();
@@ -149,19 +165,22 @@ fo.addEventListener("change",function(evt){
 },false);
 }
 function saveLocal(){
-	localStorage.savedata = so.getVal("code");
+	var code = ace.edit("code");
+	localStorage.savedata = code.session.getValue();
 	cMenu();
 	so.modal.al("完了","LocalStorageに上書き保存しました");
 }
 function loadLocal(){
-	so.setVal("code",localStorage.savedata);
+	var code = ace.edit("code");
+	code.setValue(localStorage.savedata,1);
 	cMenu();
 	view();
 }
 function newFile(){
 	cMenu();
 	if(confirm("新しいファイルを作成すると、現在の編集データが消えますがよろしいですか？")){
-		so.setVal("code","");
+		var code = ace.edit("code");
+		code.setValue("",1);
 		document.title="New - Soruto Web Develop";
 		view();
 	}
@@ -190,17 +209,10 @@ function pageview(func){
 	cMenu();
 	}
 }
-function edit(){
-	var code = document.getElementById("code");
-    code.value = document.getElementById("view").contentWindow.document.body.innerHTML;
-	var byn = encodeURI(code.value).replace(/%[0-9A-F]{2}/g, '*').length + 3;
-	var krb = byn / 1000;
-	document.getElementById("states").textContent = "> 文字数:" + so.getVal("code").length + "字 サイズ:" + byn + "Byte (" + krb + "KB)";
-}
 function template(st){
 	if(st=="html"){
-	var code = document.getElementById("code");
-	code.value='<!DOCTYPE HTML><html><head><title>Template</title><meta charset="utf-8"></head><body><p>sample</p></body></html>';
+	var code = ace.edit("code");
+	code.setValue('<!DOCTYPE HTML><html><head><title>Template</title><meta charset="utf-8"></head><body><p>sample</p></body></html>',1);
 	}
 view();
 cMenu();
@@ -210,3 +222,15 @@ function Screen(){
 	so.getId("view").style.height= size + "px";
 	so.getId("code").style.height= size + "px";
 	}
+function changeLang(lang){
+	var editor = ace.edit("code");
+	if(lang=="css"){editor.getSession().setMode("ace/mode/css");}
+	else if(lang=="html"){editor.getSession().setMode("ace/mode/html")}
+	else if(lang=="js"){editor.getSession().setMode("ace/mode/javascript");}
+cMenu();
+}
+function _delete_element( id_name ){
+    var dom_obj = document.getElementById(id_name);
+    var dom_obj_parent = dom_obj.parentNode;
+    dom_obj_parent.removeChild(dom_obj);
+}

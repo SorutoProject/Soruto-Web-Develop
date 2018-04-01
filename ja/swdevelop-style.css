@@ -16,10 +16,7 @@ body{
 	top:30px;
 	left:0px;
 	width:49.5%;
-	height:600px;
-	border:#fefefe 1px solid;
-	color:#fefefe;
-	background:#2c2c2c;
+	height:600px
 	font-family: 'メイリオ', Meiryo,'Meiryo UI','ヒラギノ角ゴシック','Hiragino Sans',sans-serif;
 	font-size:10pt;
 	resize:none;
@@ -79,7 +76,7 @@ body{
 }
 #submenu{
 	position:absolute;
-	z-index: 2;
+	z-index: 5;
 	top:31px;
 	left:0px;
 	width:300px;
@@ -111,7 +108,7 @@ input[type="text"]:hover,input[type="text"]:focus,input[type="button"]:hover,inp
 	cursor:default;
 }
 #so-modal{
-	z-index:2;
+	z-index:6;
 }
 #change{
 	position:absolute;
