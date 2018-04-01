@@ -139,7 +139,7 @@ cMenu();
 }
 function fileOpen(){
 cMenu();
-var diaso = '<b>Select your file</b><br><input type="file" id="selfile" accept=".html,.htm,.js,.css"><br><br><input type="button" onclick="so.modal.close();" value="Cancel">';
+var diaso = '<b>Select your file</b><br><input type="file" id="selfile" accept=".html,.htm,.js,.css,.php"><br><br><input type="button" onclick="so.modal.close();" value="Cancel">';
 so.modal.custom(diaso);
 var fo = document.getElementById("selfile");
 fo.addEventListener("change",function(evt){
@@ -154,7 +154,7 @@ fo.addEventListener("change",function(evt){
     code.setValue(reader.result, 1);
 	document.title = file[0].name + " - Soruto Web Develop";
 	sessionStorage.filename =file[0].name;
-	var accept = file[0].name.split(".")[1];
+	var accept = file[0].name.split(".")[1].toLowerCase();
 	if(accept=="html" || accept=="htm"){changeLang("html");viewMode(0);}
 	else if(accept=="js"){changeLang("js");viewMode(1);}
     else if(accept="css"){changeLang("css");viewMode(1);}
