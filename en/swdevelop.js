@@ -1,4 +1,15 @@
-﻿window.onload = function(){
+﻿/*Soruto Web Develop Ver.2.0
+Made with ACE Editor.
+*/
+
+window.onload = function(){
+	var editor = ace.edit("code");
+	editor.setTheme("ace/theme/monokai");
+    editor.setFontSize(14);
+    editor.getSession().setMode("ace/mode/html");
+    editor.getSession().setUseWrapMode(true);
+    editor.getSession().setTabSize(2);
+	
 	var arg = new Object;
 	var pair=location.search.substring(1).split('&');
 	for(var i=0;pair[i];i++) {
@@ -11,30 +22,36 @@
 	}
 	view();
 	Screen();
-	document.getElementById("submenu").style.display = "none";
+	
+/*var iframe = document.querySelector('iframe');
+
+iframe.contentDocument.body.contentEditable = true;
+iframe.contentDocument.designMode = 'on';
+*/
+document.getElementById("submenu").style.display = "none";
 }
 window.onresize = function () {
     Screen();
 }
 window.onbeforeunload = function(e) {
-      return 'If you leave this page now,you lost the data. Are you sure you wamt to leave this page?';
+      return 'If you leave this page now,you lost the edit data.\nAre you sure to leave this page?';
     };
 function view(){
-	var code = document.getElementById("code");
-	document.getElementById("view").contentWindow.document.body.innerHTML = code.value;
-	var byn = encodeURI(code.value).replace(/%[0-9A-F]{2}/g, '*').length + 3;
+	var code = ace.edit("code");
+	document.getElementById("view").contentWindow.document.body.innerHTML = code.session.getValue();
+	var byn = encodeURI(code.session.getValue()).replace(/%[0-9A-F]{2}/g, '*').length + 3;
 	var krb = byn / 1000;
-	document.getElementById("states").textContent = "> Length:" + so.getVal("code").length + " Size:" + byn + "B (" + krb + "KB)";
+	document.getElementById("states").textContent = "> length:" + code.session.getValue().length + " Size:" + byn + "Byte (" + krb + "KB)";
 }
 function viewMode(num){
 	if(num==0){
-		so.getId("code").style.width = "49.5%";
-		so.getId("view").style.width = "49.5%";
+		so.getId("code").style.width = "50%";
+		so.getId("view").style.width = "50%";
 		so.display("view");
 		so.display("code");
 		view();
 	}else if(num==1){
-		so.getId("code").style.width = "99.5%";
+		so.getId("code").style.width = "100%";
 		so.displayNone("view");
 		so.display("code");
 	}
@@ -46,9 +63,9 @@ function viewMode(num){
 }
 function menu(num){
 	var sub = document.getElementById("submenu");
-	//Menu Set
+	//メニュー設定
 	if(num==0){
-		sub.innerHTML='<a href="javascript:void(0);" onclick="newFile();" class="submenulink">New</a><input type="text" id="filename" style="width:295px;background:#4c4c4c;color:#fefefe;" placeholder="File Name..." autocomplete="off"><br><a href="javascript:void(0);" onclick="fileDown();" class="submenulink">Download</a><a href="javascript:void(0);" onclick="fileOpen();" class="submenulink">Open</a><a href="javascript:void(0);" onclick="saveLocal();" class="submenulink">Save to this Browser(LocalStorage)</a><a href="javascript:void(0);" onclick="loadLocal();" class="submenulink">Load from this Browser(LocalStorage)</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(Close this menu)</a>';
+		sub.innerHTML='<a href="javascript:void(0);" onclick="newFile();" class="submenulink">New File</a><input type="text" id="filename" style="width:295px;background:#4c4c4c;color:#fefefe;" placeholder="File name..." autocomplete="off" onkeyup="savefilename();"><br><a href="javascript:void(0);" onclick="fileDown();" class="submenulink">Download</a><a href="javascript:void(0);" onclick="fileOpen();" class="submenulink">Open</a><a href="javascript:void(0);" onclick="saveLocal();" class="submenulink">Save to LocalStorage</a><a href="javascript:void(0);" onclick="loadLocal();" class="submenulink">Load from the LocalStorage</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(Close this menu)</a>';
 		var filename = sessionStorage.filename;
 		if(filename===undefined){}
 		else{
@@ -56,16 +73,19 @@ function menu(num){
 		}
 	}
 	else if(num==1){
-		sub.innerHTML='<a href="javascript:void(0)" onclick="newtab(0)" class="submenulink">Open new tab</a><a href="javascript:void(0)" onclick="newtab(1)" class="submenulink">Open a file in new tab</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(Close this menu)</a>';
+		sub.innerHTML='<a href="javascript:void(0)" onclick="newtab(0)" class="submenulink">Open new tab</a><a href="javascript:void(0)" onclick="newtab(1)" class="submenulink">Open file in new tab</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(Close this menu)</a>';
 	}
 	else if(num==2){
-		sub.innerHTML='<a href="javascript:void(0);" onclick="viewMode(0);cMenu();" class="submenulink">Dual View Mode</a><a href="javascript:void(0);" onclick="viewMode(1);cMenu();" class="submenulink">Source View Mode</a><a href="javascript:void(0);" onclick="viewMode(2);cMenu();" class="submenulink" style="border-bottom:#fefefe 2px solid;">Page View Mode</a><a href="javascript:void(0)" onclick="pageview(\'reload\');" class="submenulink">Update the page view</a><a href="javascript:void(0)" onclick="pageview(\'reset\');" class="submenulink">Reset the page view(When showing error)</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(Close this menu)</a>';
+		sub.innerHTML='<a href="javascript:void(0);" onclick="viewMode(0);cMenu();" class="submenulink">Dual view mode</a><a href="javascript:void(0);" onclick="viewMode(1);cMenu();" class="submenulink">Source view mode</a><a href="javascript:void(0);" onclick="viewMode(2);cMenu();" class="submenulink" style="border-bottom:#fefefe 2px solid;">Page view mode</a><a href="javascript:void(0)" onclick="pageview(\'reload\');" class="submenulink">Reload the page view</a><a href="javascript:void(0)" onclick="pageview(\'reset\');" class="submenulink">Reset the page view(When showing error)</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(Close this menu)</a>';
 	}
 	else if(num==3){
-		sub.innerHTML='<a href="javascript:void(0);" onclick="template(\'html\')" class="submenulink">Normal HTML</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(Close this menu)</a>';
+		sub.innerHTML='<a href="javascript:void(0);" onclick="template(\'html\')" class="submenulink">Plain HTML</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(Close this menu)</a>';
 	}
 	else if(num==4){
-		sub.innerHTML='<a href="javascript:void(0)" onclick="so.modal.al(\'About\',\'<b>Soruto Web Develop</b><br><span style=font-size:10pt>Web develop on any browsers.<br>(c)2018 Soruto Project</span>\');cMenu();" class="submenulink">About this site</a><a href="https://github.com/SorutoProject/Soruto-Web-Develop/" target="_blank" class="submenulink">GitHub</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(Close this menu)</a>'
+		sub.innerHTML='<a href="javascript:void(0);" onclick="so.modal.al(\'About\',\'<b>Soruto Web Develop</b><br><span style=font-size:10pt>Web develop on any browsers.<br>Made with ACE Editor.<br>(c)2018 Soruto Project</span>\');cMenu();" class="submenulink">About this site</a><a href="https://github.com/SorutoProject/Soruto-Web-Develop/" target="_blank" class="submenulink">GitHub</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(Close this menu)</a>';
+	}
+	else if(num==5){
+		sub.innerHTML='<a href="javascript:void(0);" onclick="changeLang(\'css\')" class="submenulink">CSS</a><a href="javascript:void(0);" onclick="changeLang(\'html\')" class="submenulink">HTML</a><a href="javascript:void(0);" onclick="changeLang(\'js\')" class="submenulink">JavaScript</a>'
 	}
 }
 function sMenu(){
@@ -77,12 +97,12 @@ function sMenu(){
 	}
 }
 function fileDown(){
-var content  = document.getElementById("code").value;
+var code = ace.edit("code");
+var content  = code.session.getValue();
 var mimeType = 'text/plain';
 var name     = document.getElementById("filename").value;
 if(name==""){
-	so.modal.al("info","Please enter the File Name.");
-	document.getElementById("filename").focus();
+	so.modal.al("Info","Please enter the file name");
 }else{
 var bom  = new Uint8Array([0xEF, 0xBB, 0xBF]);
 var blob = new Blob([bom, content], {type : mimeType});
@@ -93,11 +113,9 @@ a.target   = '_blank';
 a.id = "downloadlink";
 
 if (window.navigator.msSaveBlob) {
-  // for IE
   window.navigator.msSaveBlob(blob, name)
 }
 else if (window.URL && window.URL.createObjectURL) {
-  // for Firefox
   a.href = window.URL.createObjectURL(blob);
   document.body.appendChild(a);
   a.click();
@@ -125,14 +143,11 @@ fo.addEventListener("change",function(evt){
 	so.modal.custom("<br><br><br><center>Loading...</center>");
 	so.getId("so-modal").style.cursor="wait";
   var file = evt.target.files;
-  //Make FileReader
   var reader = new FileReader();
-  //read As text
   reader.readAsText(file[0]);
-  //onload
   reader.onload = function(ev){
-    //show on the editor
-    so.getId("code").value = reader.result;
+	var code = ace.edit("code");
+    code.setValue(reader.result, 1);
 	document.title = file[0].name + " - Soruto Web Develop";
 	sessionStorage.filename =file[0].name;
 	so.modal.close();
@@ -142,19 +157,22 @@ fo.addEventListener("change",function(evt){
 },false);
 }
 function saveLocal(){
-	localStorage.savedata = so.getVal("code");
+	var code = ace.edit("code");
+	localStorage.savedata = code.session.getValue();
 	cMenu();
 	so.modal.al("Complete","Saved to LocalStorage.");
 }
 function loadLocal(){
-	so.setVal("code",localStorage.savedata);
+	var code = ace.edit("code");
+	code.setValue(localStorage.savedata,1);
 	cMenu();
 	view();
 }
 function newFile(){
 	cMenu();
-	if(confirm("Are you sure you want to make new file?")){
-		so.setVal("code","");
+	if(confirm("If you make new file,you lost the edit data.\nAre you sure to make new file?")){
+		var code = ace.edit("code");
+		code.setValue("",1);
 		document.title="New - Soruto Web Develop";
 		view();
 	}
@@ -173,7 +191,7 @@ function newtab(num){
 		var openurl = location.href.split("?");
 		window.open(openurl[0] + "?f=new","_blank");
 	}
-cMenu();	
+cMenu();
 }
 function pageview(func){
 	if(func == "reset"){
@@ -183,17 +201,10 @@ function pageview(func){
 	cMenu();
 	}
 }
-function edit(){
-	var code = document.getElementById("code");
-    code.value = document.getElementById("view").contentWindow.document.body.innerHTML;
-	var byn = encodeURI(code.value).replace(/%[0-9A-F]{2}/g, '*').length + 3;
-	var krb = byn / 1000;
-	document.getElementById("states").textContent = "> Length:" + so.getVal("code").length + " Size:" + byn + "Byte (" + krb + "KB)";
-}
 function template(st){
 	if(st=="html"){
-	var code = document.getElementById("code");
-	code.value='<!DOCTYPE HTML><html><head><title>Template</title><meta charset="utf-8"></head><body><p>sample</p></body></html>';
+	var code = ace.edit("code");
+	code.setValue('<!DOCTYPE HTML><html><head><title>Template</title><meta charset="utf-8"></head><body><p>sample</p></body></html>',1);
 	}
 view();
 cMenu();
@@ -203,3 +214,15 @@ function Screen(){
 	so.getId("view").style.height= size + "px";
 	so.getId("code").style.height= size + "px";
 	}
+function changeLang(lang){
+	var editor = ace.edit("code");
+	if(lang=="css"){editor.getSession().setMode("ace/mode/css");}
+	else if(lang=="html"){editor.getSession().setMode("ace/mode/html")}
+	else if(lang=="js"){editor.getSession().setMode("ace/mode/javascript");}
+cMenu();
+}
+function _delete_element( id_name ){
+    var dom_obj = document.getElementById(id_name);
+    var dom_obj_parent = dom_obj.parentNode;
+    dom_obj_parent.removeChild(dom_obj);
+}
