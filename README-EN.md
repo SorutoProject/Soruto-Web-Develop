@@ -4,6 +4,7 @@
 Index  
 * [Welcome!](#welcome)
 * [Features](#features)
+* [directories](#directories)
 
 ## Welcome!
 <img src="Web-Develop-pop.png" width="480px" height="240px"></img>  
@@ -22,5 +23,13 @@ You can edit html,JavaScript,CSS and other files on your browser.
 * Template(s)
 
 Made with ACE Editor
+
+## directories
+
+(root)  
+&nbsp;&nbsp;|-ja(For Japanese)  
+&nbsp;&nbsp;|-en(For English)  
+&nbsp;&nbsp;|-src(For ACE Editor)  
+&nbsp;&nbsp;&nbsp;&nbsp;|-snippets  
 
 (C)2018 Soruto Project
