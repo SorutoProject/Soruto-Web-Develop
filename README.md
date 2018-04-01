@@ -23,4 +23,4 @@ Do you want to see the English version?
 * テンプレート(現在1種類のみ(β版))
 * ハイライト表示(by ACE)
 
-なお、このソフトウェアは、ACE Editorを搭載しています。
+なお、このソフトウェアは、ACE Editorを使用しています。
