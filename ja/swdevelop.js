@@ -10,6 +10,7 @@ window.onload = function(){
     editor.getSession().setUseWrapMode(true);
     editor.getSession().setTabSize(2);
 	editor.setShowPrintMargin(false);
+	editor.setAutoScrollEditorIntoView(true); 
 	
 	var arg = new Object;
 	var pair=location.search.substring(1).split('&');
@@ -61,6 +62,8 @@ function viewMode(num){
 		so.display("view");
 		so.displayNone("code");
 	}
+var editor = ace.edit("code");
+editor.setTheme("ace/theme/monokai");
 }
 function menu(num){
 	var sub = document.getElementById("submenu");
