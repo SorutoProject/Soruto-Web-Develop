@@ -9,6 +9,7 @@ window.onload = function(){
     editor.getSession().setMode("ace/mode/html");
     editor.getSession().setUseWrapMode(true);
     editor.getSession().setTabSize(2);
+	editor.setShowPrintMargin(false);
 	
 	var arg = new Object;
 	var pair=location.search.substring(1).split('&');
