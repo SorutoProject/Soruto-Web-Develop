@@ -118,8 +118,11 @@ input[type=text]:hover,input[type=text]:focus,input[type=button]:hover,input[typ
 }
 @font-face {
  font-family:SourceHanCodeJP-Normal;
- src:url(../SourceHanCodeJP-Normal.otf);
+ src:url(../SourceHanCodeJP-Normal.otf)
 }
-.ace_editor {
- font-family:SourceHanCodeJP-Normal,monospace
-}
+  .ace_editor {
+    padding-top: 1px;
+    padding-left: 1px;
+    line-height: 13px;
+    font-family: source-code-pro,SourceHanCodeJP-Normal, monospace;
+  }
