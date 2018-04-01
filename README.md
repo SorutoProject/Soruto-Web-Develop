@@ -21,3 +21,6 @@ Do you want to see the English version?
 * ソース表示モード
 * ページ表示モード
 * テンプレート(現在1種類のみ(β版))
+* ハイライト表示(by ACE)
+
+なお、このソフトウェアは、ACE Editorを搭載しています。
