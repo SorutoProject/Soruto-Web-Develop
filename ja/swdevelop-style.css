@@ -116,3 +116,10 @@ input[type=text]:hover,input[type=text]:focus,input[type=button]:hover,input[typ
  top:30px;
  right:20px
 }
+@font-face {
+	font-family: 'Source Code Pro';
+	src: url('../SourceCodeVariable-Roman.ttf');
+}
+.ace_editor{
+ font-family:'Source Code Pro',monospace;
+}
