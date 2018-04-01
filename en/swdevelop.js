@@ -26,12 +26,7 @@ window.onload = function(){
 	Screen();
 	document.getElementById("loader").style.display = "none";
 	
-	editor.on('change', function changeListener() {              
-    if(isCodeInserted) {
-         document.getElementById("loader").style.display = "none";       
-         editor.removeEventListener('change', changeListener);
-    }
-});
+
 	
 /*var iframe = document.querySelector('iframe');
 
