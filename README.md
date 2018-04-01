@@ -5,6 +5,7 @@ Do you want to see the English version?
 目次  
 * [Soruto Web Developへようこそ](soruto-web-developへようこそ)
 * [機能](#機能)
+* [フォルダ構成](#フォルダ構成)
 
 ## Soruto Web Developへようこそ
 <img src="Web-Develop-pop.png" width="480px" height="240px"></img>  
@@ -24,3 +25,12 @@ Do you want to see the English version?
 * ハイライト表示(by ACE)
 
 なお、このソフトウェアは、ACE Editorを使用しています。
+
+## フォルダ構成
+Soruto Web Developは、以下のフォルダ構造により作成されています。  
+
+(root)  
+&nbsp;&nbsp;|-ja(日本語版用フォルダ)  
+&nbsp;&nbsp;|-en(英語版用フォルダ)  
+&nbsp;&nbsp;|-src(ACE Editorのファイル格納フォルダ)  
+&nbsp;&nbsp;&nbsp;&nbsp;|-snippets  
