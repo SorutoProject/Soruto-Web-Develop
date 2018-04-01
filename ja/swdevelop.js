@@ -31,6 +31,7 @@ window.onload = function(){
 	}
 	view();
 	Screen();
+	document.getElementById("loader").style.display = "none";
 	
 /*var iframe = document.querySelector('iframe');
 
