@@ -123,3 +123,6 @@ input[type=text]:hover,input[type=text]:focus,input[type=button]:hover,input[typ
 .ace_editor {
  font-family:SourceHanCodeJP-Normal,monospace
 }
+textarea{
+	color:#202020;
+}
