@@ -5,7 +5,7 @@ Made with ACE Editor.
 window.onload = function(){
 	var editor = ace.edit("code");
 	editor.setTheme("ace/theme/monokai");
-    editor.setFontSize(12);
+    editor.setFontSize(11);
     editor.getSession().setMode("ace/mode/html");
     editor.getSession().setUseWrapMode(true);
     editor.getSession().setTabSize(2);
