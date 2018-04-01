@@ -10,14 +10,7 @@ window.onload = function(){
     editor.getSession().setUseWrapMode(true);
     editor.getSession().setTabSize(2);
 	editor.setShowPrintMargin(false);
-	editor.setAutoScrollEditorIntoView(true); 
-	
-	editor.$blockScrolling = Infinity;
-    editor.setOptions({
-      enableBasicAutocompletion: true,
-      enableSnippets: true,
-      enableLiveAutocompletion: true
-    });
+	editor.setAutoScrollEditorIntoView(true);
 	
 	var arg = new Object;
 	var pair=location.search.substring(1).split('&');
@@ -43,14 +36,14 @@ window.onresize = function () {
     Screen();
 }
 window.onbeforeunload = function(e) {
-      return 'このページから出ると、編集内容が失われますが、続行しますか?';
+      return 'If you leave this page now,you lost the edit data.\nAre you sure to leave this page?';
     };
 function view(){
 	var code = ace.edit("code");
 	document.getElementById("view").contentWindow.document.body.innerHTML = code.session.getValue();
 	var byn = encodeURI(code.session.getValue()).replace(/%[0-9A-F]{2}/g, '*').length + 3;
 	var krb = byn / 1000;
-	document.getElementById("states").textContent = "> 文字数:" + code.session.getValue().length + "字 サイズ:" + byn + "Byte (" + krb + "KB)";
+	document.getElementById("states").textContent = "> length:" + code.session.getValue().length + " Size:" + byn + "Byte (" + krb + "KB)";
 }
 function viewMode(num){
 	if(num==0){
@@ -76,7 +69,7 @@ function menu(num){
 	var sub = document.getElementById("submenu");
 	//メニュー設定
 	if(num==0){
-		sub.innerHTML='<a href="javascript:void(0);" onclick="newFile();" class="submenulink">新規作成</a><input type="text" id="filename" style="width:295px;background:#4c4c4c;color:#fefefe;" placeholder="ファイル名..." autocomplete="off" onkeyup="savefilename();"><br><a href="javascript:void(0);" onclick="fileDown();" class="submenulink">ダウンロード</a><a href="javascript:void(0);" onclick="fileOpen();" class="submenulink">ファイルを開く</a><a href="javascript:void(0);" onclick="saveLocal();" class="submenulink">ブラウザ(LocalStorage)に保存</a><a href="javascript:void(0);" onclick="loadLocal();" class="submenulink">ブラウザ(LocalStorage)から読み込み</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(メニューを閉じる)</a>';
+		sub.innerHTML='<a href="javascript:void(0);" onclick="newFile();" class="submenulink">New File</a><input type="text" id="filename" style="width:295px;background:#4c4c4c;color:#fefefe;" placeholder="File name..." autocomplete="off" onkeyup="savefilename();"><br><a href="javascript:void(0);" onclick="fileDown();" class="submenulink">Download</a><a href="javascript:void(0);" onclick="fileOpen();" class="submenulink">Open</a><a href="javascript:void(0);" onclick="saveLocal();" class="submenulink">Save to LocalStorage</a><a href="javascript:void(0);" onclick="loadLocal();" class="submenulink">Load from the LocalStorage</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(Close this menu)</a>';
 		var filename = sessionStorage.filename;
 		if(filename===undefined){}
 		else{
@@ -84,19 +77,19 @@ function menu(num){
 		}
 	}
 	else if(num==1){
-		sub.innerHTML='<a href="javascript:void(0)" onclick="newtab(0)" class="submenulink">新しいタブを開く</a><a href="javascript:void(0)" onclick="newtab(1)" class="submenulink">新しいタブでファイルを開く</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(メニューを閉じる)</a>';
+		sub.innerHTML='<a href="javascript:void(0)" onclick="newtab(0)" class="submenulink">Open new tab</a><a href="javascript:void(0)" onclick="newtab(1)" class="submenulink">Open file in new tab</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(Close this menu)</a>';
 	}
 	else if(num==2){
-		sub.innerHTML='<a href="javascript:void(0);" onclick="viewMode(0);cMenu();" class="submenulink">デュアルビューモード</a><a href="javascript:void(0);" onclick="viewMode(1);cMenu();" class="submenulink">ソース表示モード</a><a href="javascript:void(0);" onclick="viewMode(2);cMenu();" class="submenulink" style="border-bottom:#fefefe 2px solid;">ページ表示モード</a><a href="javascript:void(0)" onclick="pageview(\'reload\');" class="submenulink">ページ表示を更新</a><a href="javascript:void(0)" onclick="pageview(\'reset\');" class="submenulink">ページ表示をリセット(エラーが出たとき)</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(メニューを閉じる)</a>';
+		sub.innerHTML='<a href="javascript:void(0);" onclick="viewMode(0);cMenu();" class="submenulink">Dual view mode</a><a href="javascript:void(0);" onclick="viewMode(1);cMenu();" class="submenulink">Source view mode</a><a href="javascript:void(0);" onclick="viewMode(2);cMenu();" class="submenulink" style="border-bottom:#fefefe 2px solid;">Page view mode</a><a href="javascript:void(0)" onclick="pageview(\'reload\');" class="submenulink">Reload the page view</a><a href="javascript:void(0)" onclick="pageview(\'reset\');" class="submenulink">Reset the page view(When showing error)</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(Close this menu)</a>';
 	}
 	else if(num==3){
-		sub.innerHTML='<a href="javascript:void(0);" onclick="template(\'html\')" class="submenulink">標準HTML</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(メニューを閉じる)</a>';
+		sub.innerHTML='<a href="javascript:void(0);" onclick="template(\'html\')" class="submenulink">Plain HTML</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(Close this menu)</a>';
 	}
 	else if(num==4){
-		sub.innerHTML='<a href="javascript:void(0);" onclick="so.modal.al(\'About\',\'<b>Soruto Web Develop</b><br><span style=font-size:10pt>Webブラウザで使えるオンラインIDE<br>Made with ACE Editor.<br>(c)2018 Soruto Project</span>\');cMenu();" class="submenulink">このサイトについて</a><a href="https://github.com/SorutoProject/Soruto-Web-Develop/" target="_blank" class="submenulink">GitHub</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(メニューを閉じる)</a>';
+		sub.innerHTML='<a href="javascript:void(0);" onclick="so.modal.al(\'About\',\'<b>Soruto Web Develop</b><br><span style=font-size:10pt>Web develop on any browsers.<br>Made with ACE Editor.<br>(c)2018 Soruto Project</span>\');cMenu();" class="submenulink">About this site</a><a href="https://github.com/SorutoProject/Soruto-Web-Develop/" target="_blank" class="submenulink">GitHub</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(Close this menu)</a>';
 	}
 	else if(num==5){
-		sub.innerHTML='<a href="javascript:void(0);" onclick="changeLang(\'css\')" class="submenulink">CSS</a><a href="javascript:void(0);" onclick="changeLang(\'html\')" class="submenulink">HTML</a><a href="javascript:void(0);" onclick="changeLang(\'js\')" class="submenulink">JavaScript</a><a href="javascript:void(0);" onclick="changeLang(\'php\')" class="submenulink">PHP</a>'
+		sub.innerHTML='<a href="javascript:void(0);" onclick="changeLang(\'css\')" class="submenulink">CSS</a><a href="javascript:void(0);" onclick="changeLang(\'html\')" class="submenulink">HTML</a><a href="javascript:void(0);" onclick="changeLang(\'js\')" class="submenulink">JavaScript</a><a href="javascript:void(0);" onclick="changeLang(\'php\')" class="submenulink">PHP</a>';
 	}
 }
 function sMenu(){
@@ -107,16 +100,14 @@ function sMenu(){
 		sub.style.display = "block";
 	}
 }
-// ダウンロードしたいコンテンツ、MIMEType、ファイル名
 function fileDown(){
 var code = ace.edit("code");
 var content  = code.session.getValue();
 var mimeType = 'text/plain';
 var name     = document.getElementById("filename").value;
 if(name==""){
-	so.modal.al("情報","ファイル名を入力してください");
+	so.modal.al("Info","Please enter the file name");
 }else{
-// BOMは文字化け対策
 var bom  = new Uint8Array([0xEF, 0xBB, 0xBF]);
 var blob = new Blob([bom, content], {type : mimeType});
 
@@ -126,11 +117,9 @@ a.target   = '_blank';
 a.id = "downloadlink";
 
 if (window.navigator.msSaveBlob) {
-  // for IE
   window.navigator.msSaveBlob(blob, name)
 }
 else if (window.URL && window.URL.createObjectURL) {
-  // for Firefox
   a.href = window.URL.createObjectURL(blob);
   document.body.appendChild(a);
   a.click();
@@ -150,31 +139,28 @@ cMenu();
 }
 function fileOpen(){
 cMenu();
-var diaso = '<b>ファイルを選択してください</b><br><span style="font-size:8pt;">※UTF-8でエンコードされていることを推奨します。</span><br><input type="file" id="selfile" accept=".html,.htm,.js,.css"><br><br><input type="button" onclick="so.modal.close();" value="キャンセル">';
+var diaso = '<b>Select your file</b><br><input type="file" id="selfile" accept=".html,.htm,.js,.css,.php"><br><br><input type="button" onclick="so.modal.close();" value="Cancel">';
 so.modal.custom(diaso);
 var fo = document.getElementById("selfile");
 fo.addEventListener("change",function(evt){
 	so.modal.close();
-	so.modal.custom("<br><br><br><center>読み込み中...</center>");
+	so.modal.custom("<br><br><br><center>Loading...</center>");
 	so.getId("so-modal").style.cursor="wait";
   var file = evt.target.files;
-  //FileReaderの作成
   var reader = new FileReader();
-  //テキスト形式で読み込む
   reader.readAsText(file[0]);
-  //読込終了後の処理
   reader.onload = function(ev){
-    //テキストエリアに表示する
 	var code = ace.edit("code");
     code.setValue(reader.result, 1);
 	document.title = file[0].name + " - Soruto Web Develop";
 	sessionStorage.filename =file[0].name;
-	var accept = file[0].name.split(".")[1];
+	var accept = file[0].name.split(".")[1].toLowerCase();
 	if(accept=="html" || accept=="htm"){changeLang("html");viewMode(0);}
 	else if(accept=="js"){changeLang("js");viewMode(1);}
     else if(accept="css"){changeLang("css");viewMode(1);}
-	else if(accept="php"){changeLang("php");viewMode(1);}
-	so.modal.close();so.getId("so-modal").style.cursor="default";
+	else if(accept=="php"){changeLang("php");viewMode(1);}
+	so.modal.close();
+	so.getId("so-modal").style.cursor="default";
 	view();
   }
 },false);
@@ -183,7 +169,7 @@ function saveLocal(){
 	var code = ace.edit("code");
 	localStorage.savedata = code.session.getValue();
 	cMenu();
-	so.modal.al("完了","LocalStorageに上書き保存しました");
+	so.modal.al("Complete","Saved to LocalStorage.");
 }
 function loadLocal(){
 	var code = ace.edit("code");
@@ -193,7 +179,7 @@ function loadLocal(){
 }
 function newFile(){
 	cMenu();
-	if(confirm("新しいファイルを作成すると、現在の編集データが消えますがよろしいですか？")){
+	if(confirm("If you make new file,you lost the edit data.\nAre you sure to make new file?")){
 		var code = ace.edit("code");
 		code.setValue("",1);
 		document.title="New - Soruto Web Develop";
