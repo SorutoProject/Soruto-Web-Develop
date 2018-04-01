@@ -15,7 +15,7 @@ body{
 	position:absolute;
 	top:30px;
 	left:0px;
-	width:49.5%;
+	width:50%;
 	height:600px
 	font-family: 'メイリオ', Meiryo,'Meiryo UI','ヒラギノ角ゴシック','Hiragino Sans',sans-serif;
 	font-size:10pt;
@@ -25,7 +25,7 @@ body{
 	position:absolute;
 	top:31px;
 	right:0px;
-	width:49.5%;
+	width:50%;
 	height:600px;
 	border:#fefefe 1px solid;
 	background:#fff;

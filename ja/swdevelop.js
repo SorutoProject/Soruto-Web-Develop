@@ -229,10 +229,10 @@ function Screen(){
 	}
 function changeLang(lang){
 	var editor = ace.edit("code");
-	if(lang=="css"){editor.getSession().setMode("ace/mode/css");}
-	else if(lang=="html"){editor.getSession().setMode("ace/mode/html")}
-	else if(lang=="js"){editor.getSession().setMode("ace/mode/javascript");}
-	else if(lang=="js"){editor.getSession().setMode("ace/mode/php");}
+	if(lang=="css"){editor.getSession().setMode("ace/mode/css");viewMode(1);}
+	else if(lang=="html"){editor.getSession().setMode("ace/mode/html");viewMode(0);}
+	else if(lang=="js"){editor.getSession().setMode("ace/mode/javascript");viewMode(1);}
+	else if(lang=="php"){editor.getSession().setMode("ace/mode/php");viewMode(1);}
 cMenu();
 }
 function _delete_element( id_name ){
