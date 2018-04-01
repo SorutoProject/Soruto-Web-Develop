@@ -20,3 +20,7 @@ You can edit html,JavaScript,CSS and other files on your browser.
 * Source view mode
 * Page view mode
 * Template(s)
+
+Made with ACE Editor
+
+(C)2018 Soruto Project
