@@ -116,13 +116,3 @@ input[type=text]:hover,input[type=text]:focus,input[type=button]:hover,input[typ
  top:30px;
  right:20px
 }
-@font-face {
- font-family:SourceHanCodeJP-Normal;
- src:url(../SourceHanCodeJP-Normal.otf);
-}
-.ace_editor {
- font-family:SourceHanCodeJP-Normal,monospace
-}
-.ace_text-input{
-	color:rgba(0,0,0,0);
-}
