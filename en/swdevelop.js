@@ -85,7 +85,7 @@ function menu(num){
 		sub.innerHTML='<a href="javascript:void(0);" onclick="so.modal.al(\'About\',\'<b>Soruto Web Develop</b><br><span style=font-size:10pt>Web develop on any browsers.<br>Made with ACE Editor.<br>(c)2018 Soruto Project</span>\');cMenu();" class="submenulink">About this site</a><a href="https://github.com/SorutoProject/Soruto-Web-Develop/" target="_blank" class="submenulink">GitHub</a><a href="javascript:void(0);" class="submenulink" onclick="cMenu();">(Close this menu)</a>';
 	}
 	else if(num==5){
-		sub.innerHTML='<a href="javascript:void(0);" onclick="changeLang(\'css\')" class="submenulink">CSS</a><a href="javascript:void(0);" onclick="changeLang(\'html\')" class="submenulink">HTML</a><a href="javascript:void(0);" onclick="changeLang(\'js\')" class="submenulink">JavaScript</a>'
+		sub.innerHTML='<a href="javascript:void(0);" onclick="changeLang(\'css\')" class="submenulink">CSS</a><a href="javascript:void(0);" onclick="changeLang(\'html\')" class="submenulink">HTML</a><a href="javascript:void(0);" onclick="changeLang(\'js\')" class="submenulink">JavaScript</a><a href="javascript:void(0);" onclick="changeLang(\'php\')" class="submenulink">PHP</a>';
 	}
 }
 function sMenu(){
@@ -150,6 +150,11 @@ fo.addEventListener("change",function(evt){
     code.setValue(reader.result, 1);
 	document.title = file[0].name + " - Soruto Web Develop";
 	sessionStorage.filename =file[0].name;
+	var accept = file[0].name.split(".")[1];
+	if(accept=="html" || accept=="htm"){changeLang("html");viewMode(0);}
+	else if(accept=="js"){changeLang("js");viewMode(1);}
+    else if(accept="css"){changeLang("css");viewMode(1);}
+	else if(accept=="php"){changeLang("php");viewMode(1);}
 	so.modal.close();
 	so.getId("so-modal").style.cursor="default";
 	view();
@@ -219,6 +224,7 @@ function changeLang(lang){
 	if(lang=="css"){editor.getSession().setMode("ace/mode/css");}
 	else if(lang=="html"){editor.getSession().setMode("ace/mode/html")}
 	else if(lang=="js"){editor.getSession().setMode("ace/mode/javascript");}
+	else if(lang=="php"){editor.getSession().setMode("ace/mode/php");}
 cMenu();
 }
 function _delete_element( id_name ){
