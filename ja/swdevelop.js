@@ -32,12 +32,8 @@ window.onload = function(){
 	view();
 	Screen();
 	
-	editor.on('change', function changeListener() {              
-    if(isCodeInserted) {
-         document.getElementById("loader").style.display = "none";       
-         editor.removeEventListener('change', changeListener);
-    }
-});
+
+	document.getElementById("loader").style.display = "none";
 	
 /*var iframe = document.querySelector('iframe');
 
