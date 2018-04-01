@@ -11,6 +11,10 @@ window.onload = function(){
     editor.getSession().setTabSize(2);
 	editor.setShowPrintMargin(false);
 	editor.setAutoScrollEditorIntoView(true);
+	editor.setOptions({
+    fontFamily: "Meiryo UI",
+    fontSize: "10pt"
+    });
 	
 	var arg = new Object;
 	var pair=location.search.substring(1).split('&');
