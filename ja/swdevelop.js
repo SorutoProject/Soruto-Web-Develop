@@ -11,10 +11,6 @@ window.onload = function(){
     editor.getSession().setTabSize(2);
 	editor.setShowPrintMargin(false);
 	editor.setAutoScrollEditorIntoView(true); 
-	editor.setOptions({
-    fontFamily: "Meiryo UI",
-    fontSize: "10pt"
-    });
 	
 	editor.$blockScrolling = Infinity;
     editor.setOptions({
